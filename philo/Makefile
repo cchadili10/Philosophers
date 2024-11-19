@@ -6,25 +6,30 @@
 #    By: hchadili <hchadili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 03:45:04 by hchadili          #+#    #+#              #
-#    Updated: 2024/04/09 03:49:08 by hchadili         ###   ########.fr        #
+#    Updated: 2024/11/07 19:49:11 by hchadili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-
 RM = rm -f
-SRC = Mandatory/philo.c Mandatory/parsing/par.c 
-
+SRC =	main.c 				\
+		ft_atoi.c			\
+		monitor.c			\
+		routing.c			\
+		routing_philo.c		\
+		pars.c				\
+		set_value.c			\
+		
 OBJS = $(SRC:.c=.o)
 
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) -pthread $(OBJS) -o $(NAME)
 
-Mandatory/%.o : Mandatory/%.c Mandatory/philo.h
+%.o : %.c header.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
